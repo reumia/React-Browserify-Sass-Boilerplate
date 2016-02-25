@@ -3,11 +3,13 @@ var gulp = require('gulp'),
     watchify = require('watchify'),
     webserver = require('gulp-webserver'),
     sass = require('gulp-sass'),
+    to5ify = require('6to5ify'),
     source = require('vinyl-source-stream'),
     sourcemaps  = require('gulp-sourcemaps');
 
 gulp.task('browserify', function () {
     watchify(browserify('./src/js/app.js'))
+        .transform(to5ify)
         .bundle()
         .on('error', function(err) {
             console.error(err.message);
